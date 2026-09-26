@@ -19,6 +19,50 @@ import razorpay
 import hmac
 import hashlib
 import json
+def get_youtube_id(url):
+    """
+    Safely extract YouTube video ID.
+    Supports:
+    https://www.youtube.com/watch?v=VIDEO_ID
+    https://youtu.be/VIDEO_ID
+    """
+
+    if not url:
+        return None
+
+    try:
+        parsed = urlparse(url.strip())
+
+        # Only allow HTTPS
+        if parsed.scheme != "https":
+            return None
+
+        domain = parsed.netloc.lower()
+
+        # youtube.com
+        if domain in ["www.youtube.com", "youtube.com"]:
+            if parsed.path == "/watch":
+                video_id = parse_qs(
+                    parsed.query
+                ).get("v", [None])[0]
+
+                if video_id and len(video_id) == 11:
+                    return video_id
+
+        # youtu.be
+        elif domain in ["youtu.be", "www.youtu.be"]:
+            video_id = parsed.path.strip("/")
+
+            if video_id:
+                video_id = video_id.split("/")[0]
+
+                if len(video_id) == 11:
+                    return video_id
+
+    except Exception:
+        return None
+
+    return None
 
 from .models import (
     Movie,

@@ -6,3 +6,6 @@ db.sqlite3
 email.log
 celerybeat-schedule*
 media/
+venv/
+db_backup.sqlite3
+requirements_backup.txt

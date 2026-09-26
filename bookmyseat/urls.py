@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -12,14 +11,19 @@ def contact(request):
 
 
 urlpatterns = [
-    path('', login_view, name='home'),
+    # Login page first
+    path('', login_view, name='login_home'),
 
+    # Admin
     path('admin/', admin.site.urls),
 
+    # Users
     path('users/', include('users.urls')),
 
+    # Movies
     path('movies/', include('movies.urls')),
 
+    # Contact
     path('contact/', contact, name='contact'),
 ]
 

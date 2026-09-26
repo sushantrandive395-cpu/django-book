@@ -4,86 +4,73 @@ from . import views
 
 urlpatterns = [
 
-    # ========================================================
-    # MOVIES
-    # ========================================================
-
+    # Movie List
     path(
-        "movies/",
+        'movies/',
         views.movie_list,
-        name="movie_list",
+        name='movie_list'
     ),
 
+    # Movie Details
     path(
-        "movie/<int:pk>/",
+        'movie/<int:pk>/',
         views.movie_detail,
-        name="movie_detail",
+        name='movie_detail'
     ),
 
-    # ========================================================
-    # THEATERS
-    # ========================================================
-
+    # Theater List
     path(
-        "theaters/<int:movie_id>/",
+        'theaters/<int:movie_id>/',
         views.theater_list,
-        name="theater_list",
+        name='theater_list'
     ),
 
-    # ========================================================
-    # SEAT BOOKING
-    # ========================================================
-
+    # Book Seats
     path(
-        "book-seats/<int:theater_id>/",
+        'book-seats/<int:theater_id>/',
         views.book_seats,
-        name="book_seats",
+        name='book_seats'
     ),
 
-    # ========================================================
-    # TEMPORARY SEAT RESERVATION
-    # ========================================================
-
+    # Reserve Seat
     path(
-        "reserve-seat/<int:seat_id>/",
+        'reserve-seat/<int:seat_id>/',
         views.reserve_seat_view,
-        name="reserve_seat",
+        name='reserve_seat'
     ),
 
-    # ========================================================
-    # PAYMENT
-    # ========================================================
-
+    # Payment Success
     path(
-        "payment-success/",
+        'payment-success/',
         views.payment_success,
-        name="payment_success",
+        name='payment_success'
     ),
 
+    # Payment Failed
     path(
-        "payment-failed/",
+        'payment-failed/',
         views.payment_failed,
-        name="payment_failed",
+        name='payment_failed'
     ),
 
-    # ========================================================
-    # RAZORPAY WEBHOOK
-    # ========================================================
-
+    # Razorpay Webhook
     path(
-        "razorpay/webhook/",
+        'razorpay/webhook/',
         views.razorpay_webhook,
-        name="razorpay_webhook",
+        name='razorpay_webhook'
     ),
-    path(
-    "admin-dashboard/",
-    views.admin_dashboard,
-    name="admin_dashboard"
-),
 
-path(
-    "admin-dashboard/api/",
-    views.admin_analytics_api,
-    name="admin_analytics_api"
-),
+    # Admin Dashboard
+    path(
+        'admin-dashboard/',
+        views.admin_dashboard,
+        name='admin_dashboard'
+    ),
+
+    # Admin Analytics API
+    path(
+        'admin-dashboard/api/',
+        views.admin_analytics_api,
+        name='admin_analytics_api'
+    ),
 ]
