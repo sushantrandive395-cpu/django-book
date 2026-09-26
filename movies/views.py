@@ -88,13 +88,14 @@ from .services import (
 # RAZORPAY CLIENT
 # ============================================================
 
+import razorpay
+
 client = razorpay.Client(
     auth=(
         settings.RAZORPAY_KEY_ID,
         settings.RAZORPAY_KEY_SECRET,
     )
 )
-
 
 # ============================================================
 # PAYMENT CONFIGURATION

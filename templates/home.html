@@ -489,9 +489,17 @@ body {
                         and enjoy an unforgettable cinema experience.
                     </p>
 
-                    <a href="{% url 'theater_list' movies.0.id %}"
-                       class="hero-btn">
-                        🎟 Book Now
+                     {% if movies %}
+        <a href="{% url 'theater_list' movies.0.id %}"
+         class="hero-btn">
+       🎟 Book Now
+           </a>
+    {% else %}
+     <a href="{% url 'movie_list' %}"
+       class="hero-btn">
+       🎟 Browse Movies
+</a>
+{% endif %}
                     </a>
                 </div>
             </div>
