@@ -67,12 +67,6 @@ def send_booking_email(self, booking_id):
 
         email.send(fail_silently=False)
 
-        Booking.objects.filter(
-            id=booking_id
-        ).update(
-            email_status="SENT"
-        )
-
         logger.info(
             "Booking email sent successfully. Booking ID=%s",
             booking_id,
@@ -81,12 +75,6 @@ def send_booking_email(self, booking_id):
         return True
 
     except Exception:
-
-        Booking.objects.filter(
-            id=booking_id
-        ).update(
-            email_status="FAILED"
-        )
 
         logger.exception(
             "Booking email failed. Booking ID=%s",
@@ -102,6 +90,7 @@ def send_booking_email(self, booking_id):
 
 @shared_task
 def release_expired_seat_reservations():
+
     now = timezone.now()
 
     expired_seats = Seat.objects.filter(
