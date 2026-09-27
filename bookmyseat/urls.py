@@ -11,7 +11,7 @@ def contact(request):
 
 
 urlpatterns = [
-    # Login page first
+    # Login page
     path('', login_view, name='login_home'),
 
     # Admin
@@ -28,8 +28,8 @@ urlpatterns = [
 ]
 
 
-if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
-    )
+# Serve movie/media images
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)
